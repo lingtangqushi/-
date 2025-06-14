@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>消逝的海岸线——当家园沉入海水 | Vanishing Shores: When Homes Sink into the Sea</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A56DB', // 深蓝色，代表海洋
+            secondary: '#E02020', // 红色，代表危机和紧迫性
+            neutral: {
+              100: '#F7FAFC',
+              200: '#EDF2F7',
+              300: '#E2E8F0',
+              400: '#CBD5E0',
+              500: '#A0AEC0',
+              600: '#718096',
+              700: '#4A5568',
+              800: '#2D3748',
+              900: '#1A202C',
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-balance {
+        text-wrap: balance;
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-in-out;
+      }
+      .animate-slide-up {
+        animation: slideUp 0.8s ease-out;
+      }
+      .animate-pulse-slow {
+        animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      .wave-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0 50 C20 40, 40 60, 60 40, 80 60, 100 50' stroke='%231A56DB' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+        background-size: 100px 10px;
+        background-repeat: repeat-x;
+      }
+      .lang-active {
+        border-bottom: 2px solid #1A56DB;
+        color: #1A56DB;
+      }
+      .en {
+        display: block; /* 取消英文隐藏 */
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="font-inter bg-neutral-100 text-neutral-800">
+  <!-- 导航栏 -->
+  <header class="sticky top-0 z-50 bg-white shadow-md transition-all duration-300">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-2">
+          <div class="h-10 w-10 rounded-full bg-primary flex items-center justify-center">
+            <i class="fa fa-globe text-white text-xl"></i>
+          </div>
+          <h1 class="text-xl font-bold text-neutral-800">消逝的海岸线</h1>
+          <h1 class="text-xl font-bold text-neutral-800 en">Vanishing Shores</h1>
+        </div>
+        
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#overview" class="text-primary font-medium">危机概述</a>
+          <a href="#stories" class="text-neutral-600 hover:text-primary transition-colors">沿海故事</a>
+          <a href="#data" class="text-neutral-600 hover:text-primary transition-colors">数据揭示</a>
+          <a href="#solutions" class="text-neutral-600 hover:text-primary transition-colors">应对方案</a>
+          <a href="#voices" class="text-neutral-600 hover:text-primary transition-colors">专家声音</a>
+          
+          <a href="#overview" class="text-primary font-medium en ml-2">Overview</a>
+          <a href="#stories" class="text-neutral-600 hover:text-primary transition-colors en ml-2">Stories</a>
+          <a href="#data" class="text-neutral-600 hover:text-primary transition-colors en ml-2">Data</a>
+          <a href="#solutions" class="text-neutral-600 hover:text-primary transition-colors en ml-2">Solutions</a>
+          <a href="#voices" class="text-neutral-600 hover:text-primary transition-colors en ml-2">Expert Voices</a>
+        </nav>
+        
+        <button class="md:hidden text-neutral-600">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <!-- 英雄区 -->
+    <section class="relative h-[80vh] min-h-[600px] overflow-hidden">
+      <div class="absolute inset-0 bg-black/50 z-10"></div>
+      <div class="absolute inset-0">
+        <img src="https://i.postimg.cc/YCV4bgzB/image.png" alt="NASA海平面上升记录" class="w-full h-full object-cover">
+      </div>
+      
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex flex-col justify-center">
+        <div class="max-w-3xl animate-fade-in">
+          <span class="inline-block px-3 py-1 rounded-full bg-secondary text-white text-sm font-medium mb-4">特别报道</span>
+          <span class="inline-block px-3 py-1 rounded-full bg-secondary text-white text-sm font-medium mb-4 en">Special Report</span>
+          
+          <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white leading-tight mb-4">消逝的海岸线<br>当家园沉入海水</h1>
+          <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white leading-tight mb-4 en">Vanishing Shores<br>When Homes Sink into the Sea</h1>
+          
+          <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-8 max-w-2xl">气候变化下的海岸社区生存纪实</p>
+          <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-8 max-w-2xl en">Survival Stories of Coastal Communities Under Climate Change</p>
+          
+          <div class="flex flex-wrap gap-4">
+            <a href="#overview" class="px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-primary/20">
+              阅读报告
+            </a>
+            <a href="#stories" class="px-6 py-3 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-medium rounded-lg transition-all border border-white/30 transform hover:-translate-y-1">
+              聆听故事
+            </a>
+            
+            <a href="#overview" class="px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-primary/20 en ml-2">
+              Read Report
+            </a>
+            <a href="#stories" class="px-6 py-3 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-medium rounded-lg transition-all border border-white/30 transform hover:-translate-y-1 en ml-2">
+              Hear Stories
+            </a>
+          </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-0 right-0 flex justify-center">
+          <a href="#overview" class="text-white animate-bounce">
+            <i class="fa fa-chevron-down text-2xl"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 危机概述 -->
+    <section id="overview" class="py-20 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">全球海岸侵蚀危机</h2>
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4 en">Global Coastal Erosion Crisis</h2>
+          
+          <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+          
+          <p class="text-neutral-600 text-lg max-w-3xl mx-auto">气候变化最直观的后果正席卷全球海岸线</p>
+          <p class="text-neutral-600 text-lg max-w-3xl mx-auto en">The most visible consequence of climate change is sweeping across the world's coastlines</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <div class="bg-neutral-50 rounded-lg p-6 shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+            <div class="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <i class="fa fa-users text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-neutral-800">4亿人口受影响</h3>
+            <h3 class="text-xl font-semibold mb-3 text-neutral-800 en">400 million people affected</h3>
+            <p class="text-neutral-600">全球40%的沿海人口正面临海平面上升的直接威胁</p>
+            <p class="text-neutral-600 en">40% of the global coastal population is directly threatened by sea-level rise</p>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg p-6 shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+            <div class="h-14 w-14 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
+              <i class="fa fa-exclamation-triangle text-secondary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-neutral-800">2亿气候难民</h3>
+            <h3 class="text-xl font-semibold mb-3 text-neutral-800 en">200 million climate refugees</h3>
+            <p class="text-neutral-600">预计到2100年，全球将有2亿人因海平面上升被迫迁移</p>
+            <p class="text-neutral-600 en">By 2100, an estimated 200 million people will be forced to migrate due to sea-level rise</p>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg p-6 shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+            <div class="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <i class="fa fa-university text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-neutral-800">文化遗产消失</h3>
+            <h3 class="text-xl font-semibold mb-3 text-neutral-800 en">Cultural heritage at risk</h3>
+            <p class="text-neutral-600">舟山渔歌、路易斯安那克里奥尔文化等珍贵文化正面临永久消失</p>
+            <p class="text-neutral-600 en">Precious cultures such as Zhoushan fishing songs and Louisiana Creole culture are at risk of permanent loss</p>
+          </div>
+        </div>
+        
+        <div class="prose prose-lg max-w-none text-neutral-700 space-y-6">
+          <p>根据IPCC 2022报告，全球海平面自1900年以来已经上升了约20厘米，而这一趋势正在加速。海洋温度升高导致海水膨胀，冰川和冰盖融化进一步加剧了海平面上升。</p>
+          <p class="en">According to the IPCC 2022 report, the global sea level has risen by approximately 20 centimeters since 1900, and this trend is accelerating. Rising ocean temperatures cause seawater to expand, while the melting of glaciers and ice sheets further exacerbates sea-level rise.</p>
+          
+          <p>对于生活在海岸线上的社区来说，这意味着家园被淹没、生计被摧毁、文化遗产面临消失的风险。小岛屿国家尤其脆弱，它们贡献了全球不到0.5%的碳排放，却承受着90%以上的气候变化影响。</p>
+          <p class="en">For communities living along coastlines, this means淹没的家园、摧毁的生计和消失的文化遗产。Small island nations are particularly vulnerable, contributing less than 0.5% of global carbon emissions yet bearing over 90% of the impacts of climate change.</p>
+          
+          <div class="bg-primary/5 rounded-lg p-6 border-l-4 border-primary">
+            <div class="flex items-start space-x-4">
+              <div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <i class="fa fa-info text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-neutral-800 mb-2">为什么这很重要？</h4>
+                <h4 class="font-semibold text-neutral-800 mb-2 en">Why does this matter?</h4>
+                <p class="text-neutral-600">海岸侵蚀不仅威胁着人类居住环境，还破坏了重要的生态系统，如红树林、珊瑚礁和湿地，这些生态系统对于生物多样性和海岸保护至关重要。</p>
+                <p class="text-neutral-600 en">Coastal erosion threatens not only human habitats but also vital ecosystems such as mangroves, coral reefs, and wetlands, which are crucial for biodiversity and coastal protection.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 沿海故事 -->
+    <section id="stories" class="py-20 bg-neutral-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">沿海社区的真实故事</h2>
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4 en">Real Stories from Coastal Communities</h2>
+          
+          <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+          
+          <p class="text-neutral-600 text-lg max-w-3xl mx-auto">当海平面上升，那些以海为生的人们正在经历什么？</p>
+          <p class="text-neutral-600 text-lg max-w-3xl mx-auto en">What are the experiences of those who depend on the sea as sea levels rise?</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-white rounded-xl overflow-hidden shadow-sm group hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+            <div class="relative h-60 overflow-hidden">
+              <img src="https://i.postimg.cc/t4VRRcW8/image.jpg" alt="舟山渔村" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <span class="inline-block px-3 py-1 rounded-full bg-secondary text-white text-xs font-medium mb-2">中国 · 舟山</span>
+                <span class="inline-block px-3 py-1 rounded-full bg-secondary text-white text-xs font-medium mb-2 en">Zhoushan, China</span>
+                <h3 class="text-xl font-semibold text-white">舟山渔村消失的十年</h3>
+                <h3 class="text-xl font-semibold text-white en">A Decade of Disappearing Fishing Villages in Zhoushan</h3>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-neutral-600 mb-4">根据《中国妇女报》的报道，舟山群岛的许多渔村在过去十年中因海平面上升和海岸侵蚀而逐渐消失。渔民们不得不放弃传统的渔业生计，另谋出路。当地政府正在实施搬迁计划，帮助居民适应新环境。</p>
+              <p class="text-neutral-600 mb-4 en">According to China Women's News, many fishing villages in the Zhoushan Archipelago have disappeared over the past decade due to sea-level rise and coastal erosion. Fishermen have been forced to abandon their traditional livelihoods and seek alternative sources of income. The local government is implementing relocation plans to help residents adapt to new environments.</p>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <img src="https://picsum.photos/id/1062/100/100" alt="记者" class="h-10 w-10 rounded-full object-cover">
+                  <div class="ml-3">
+                    <p class="text-sm font-medium text-neutral-800">中国妇女报</p>
+                    <p class="text-xs text-neutral-500">记者</p>
+                    <p class="text-sm font-medium text-neutral-800 en">China Women's News</p>
+                    <p class="text-xs text-neutral-500 en">Reporter</p>
+                  </div>
+                </div>
+                <a href="https://www.cnwomen.com.cn/2025/06/12/99732544.html" target="_blank" class="text-primary font-medium text-sm flex items-center group-hover:underline">
+                  阅读全文 <i class="fa fa-arrow-right ml-1 text-xs"></i>
+                </a>
+                <a href="https://www.cnwomen.com.cn/2025/06/12/99732544.html" target="_blank" class="text-primary font-medium text-sm flex items-center group-hover:underline en ml-2">
+                  Read Full Story <i class="fa fa-arrow-right ml-1 text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl overflow-hidden shadow-sm group hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+            <div class="relative h-60 overflow-hidden">
+              <img src="https://picsum.photos/id/1015/800/600" alt="太平洋岛国" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <span class="inline-block px-3 py-1 rounded-full bg-secondary text-white text-xs font-medium mb-2">太平洋岛国</span>
+                <span class="inline-block px-3 py-1 rounded-full bg-secondary text-white text-xs font-medium mb-2 en">Pacific Island Nations</span>
+                <h3 class="text-xl font-semibold text-white">沉没的国度</h3>
+                <h3 class="text-xl font-semibold text-white en">Sinking Nations</h3>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-neutral-600 mb-4">纪录片《沉没的国度》记录了太平洋岛国居民的真实生活。随着海平面上升，这些国家正面临着整个国家被淹没的命运。居民们正在努力适应变化，但资源有限，国际社会的支持至关重要。</p>
+              <p class="text-neutral-600 mb-4 en">The documentary "Sinking Nations" captures the real-life experiences of residents in Pacific island nations. As sea levels rise, these countries face the threat of being completely submerged. Residents are working to adapt, but resources are limited, and international support is crucial.</p>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <img src="https://picsum.photos/id/1074/100/100" alt="王晓鸥" class="h-10 w-10 rounded-full object-cover">
+                  <div class="ml-3">
+                    <p class="text-sm font-medium text-neutral-800">王晓鸥</p>
+                    <p class="text-xs text-neutral-500">纪录片导演</p>
+                    <p class="text-sm font-medium text-neutral-800 en">Wang Xiaoou</p>
+                    <p class="text-xs text-neutral-500 en">Documentary Director</p>
+                  </div>
+                </div>
+                <a href="#" class="text-primary font-medium text-sm flex items-center group-hover:underline">
+                  观看片段 <i class="fa fa-arrow-right ml-1 text-xs"></i>
+                </a>
+                <a href="#" class="text-primary font-medium text-sm flex items-center group-hover:underline en ml-2">
+                  Watch Trailer <i class="fa fa-arrow-right ml-1 text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <a href="#" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-primary/20">
+            查看更多故事 <i class="fa fa-long-arrow-right ml-2"></i>
+          </a>
+          <a href="#" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-primary/20 en ml-2">
+            View More Stories <i class="fa fa-long-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 数据揭示 -->
+    <section id="data" class="py-20 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">数据揭示真相</h2>
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4 en">Data Reveals the Truth</h2>
+          
+          <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+          
+          <p class="text-neutral-600 text-lg max-w-3xl mx-auto">基于NASA和中国科学院的权威数据</p>
+          <p class="text-neutral-600 text-lg max-w-3xl mx-auto en">Based on authoritative data from NASA and Greenpeace</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-white rounded-xl shadow-sm p-6 animate-slide-up">
+            <h3 class="text-xl font-semibold mb-4 text-neutral-800 flex items-center">
+              <i class="fa fa-line-chart text-primary mr-2"></i>
+              海平面上升趋势
+            </h3>
+            <h3 class="text-xl font-semibold mb-4 text-neutral-800 flex items-center en">
+              <i class="fa fa-line-chart text-primary mr-2"></i>
+              Sea-Level Rise Trend
+            </h3>
+            <div class="h-80">
+              <img src="https://i.postimg.cc/YCV4bgzB/image.png" alt="NASA卫星记录的海平面上升趋势" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div class="mt-4 text-sm text-neutral-500">
+              数据来源：NASA海岸线变化数据库（2023更新）
+            </div>
+            <div class="mt-4 text-sm text-neutral-500 en">
+              Data Source: NASA Coastal Change Analysis Program (2023 Update)
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-sm p-6 animate-slide-up" style="animation-delay: 0.2s;">
+            <h3 class="text-xl font-semibold mb-4 text-neutral-800 flex items-center">
+              <i class="fa fa-map-o text-secondary mr-2"></i>
+              中国海岸线风险评估
+            </h3>
+            <h3 class="text-xl font-semibold mb-4 text-neutral-800 flex items-center en">
+              <i class="fa fa-map-o text-secondary mr-2"></i>
+              Risk Assessment of China's Coastline
+            </h3>
+            <div class="h-80">
+              <img src="https://i.postimg.cc/1t0fmdhy/image.png" alt="中国海岸线风险地图" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div class="mt-4 text-sm text-neutral-500">
+              数据来源：《中国环境科学》海岸带脆弱性评估研究（2022）
+            </div>
+            <div class="mt-4 text-sm text-neutral-500 en">
+              Data Source: Environmental Science in China - Coastal Vulnerability Assessment (2022)
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl shadow-sm p-6 transform transition-all hover:-translate-y-1 hover:shadow-md">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-semibold text-neutral-800">海平面上升速度</h3>
+              <h3 class="text-lg font-semibold text-neutral-800 en">Rate of Sea-Level Rise</h3>
+              <span class="text-3xl font-bold text-primary">3.3<span class="text-sm"> mm/年</span></span>
+              <span class="text-3xl font-bold text-primary en">3.3<span class="text-sm"> mm/year</span></span>
+            </div>
+            <div class="w-full h-2 bg-neutral-200 rounded-full overflow-hidden">
+              <div class="h-full bg-primary rounded-full" style="width: 75%;"></div>
+            </div>
+            <p class="mt-4 text-sm text-neutral-600">过去十年的平均上升速度，是20世纪的两倍多</p>
+            <p class="mt-4 text-sm text-neutral-600 en">Average rate over the past decade, more than twice the 20th-century average</p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-sm p-6 transform transition-all hover:-translate-y-1 hover:shadow-md">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-semibold text-neutral-800">受威胁城市</h3>
+              <h3 class="text-lg font-semibold text-neutral-800 en">Cities at Risk</h3>
+              <span class="text-3xl font-bold text-secondary">150+</span>
+              <span class="text-3xl font-bold text-secondary en">150+</span>
+            </div>
+            <div class="w-full h-2 bg-neutral-200 rounded-full overflow-hidden">
+              <div class="h-full bg-secondary rounded-full" style="width: 60%;"></div>
+            </div>
+            <p class="mt-4 text-sm text-neutral-600">全球有超过150个城市面临严重的海岸侵蚀风险</p>
+            <p class="mt-4 text-sm text-neutral-600 en">Over 150 cities worldwide face significant coastal erosion risks</p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-sm p-6 transform transition-all hover:-translate-y-1 hover:shadow-md">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-semibold text-neutral-800">经济损失</h3>
+              <h3 class="text-lg font-semibold text-neutral-800 en">Economic Losses</h3>
+              <span class="text-3xl font-bold text-primary">14<span class="text-sm"> 万亿美元</span></span>
+              <span class="text-3xl font-bold text-primary en">$14<span class="text-sm"> trillion</span></span>
+            </div>
+            <div class="w-full h-2 bg-neutral-200 rounded-full overflow-hidden">
+              <div class="h-full bg-primary rounded-full" style="width: 85%;"></div>
+            </div>
+            <p class="mt-4 text-sm text-neutral-600">预计到2050年，全球沿海地区每年因海平面上升造成的经济损失</p>
+            <p class="mt-4 text-sm text-neutral-600 en">Projected annual economic losses from sea-level rise in coastal areas by 2050</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 应对方案 -->
+    <section id="solutions" class="py-20 bg-neutral-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">我们的应对方案</h2>
+          <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4 en">Our Solutions</h2>
+          
+          <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+          
+          <p class="text-neutral-600 text-lg max-w-3xl mx-auto">面对海岸侵蚀危机，我们并非束手无策</p>
+          <p class="text-neutral-600 text-lg max-w-3xl mx-auto en">We are not helpless in the face of the coastal erosion crisis</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+          <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="p-6 md:p-8">
+              <h3 class="text-2xl font-semibold mb-4 text-neutral-800">海岸防护工程</h3>
+              <h3 class="text-2xl font-semibold mb-4 text-neutral-800 en">Coastal Protection Engineering</h3>
+              <p class="text-neutral-600 mb-6">建设海堤、防波堤等工程设施可以有效抵御海浪侵蚀和风暴潮的冲击。荷兰的"三角洲工程"是全球知名的海岸防护典范。</p>
+              <p class="text-neutral-600 mb-6 en">Constructing engineering facilities such as seawalls and breakwaters can effectively resist wave erosion and storm surges. The Netherlands' "Delta Works" is a globally recognized coastal protection model.</p>
+              <ul class="space-y-3 mb-6">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                  <span class="text-neutral-700">海堤和防波堤可以显著降低沿海地区的洪水风险</span>
+                </li>
+                <li class="flex items-start en">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                  <span class="text-neutral-700">Seawalls and breakwaters can significantly reduce flood risks in coastal areas</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                  <span class="text-neutral-700">生态海堤结合自然生态系统，提供更可持续的防护</span>
+                </li>
+                <li class="flex items-start en">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                  <span class="text-neutral-700">Ecological seawalls integrate natural ecosystems for more sustainable protection</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
